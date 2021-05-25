@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const sequelize = require("./database/db");
-const User = require("./database/models/User");
+require("./database/asociations");
 
 //Configuracion
 const port = process.env.PORT || 3000;
@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/posts", require("./routes/Posts"));
 app.use("/api/users", require("./routes/Users"));
+app.use("/api/adresses", require("./routes/Addresses"));
 /* 
 app.get("/", (req, res) => {
   res.json("hola mundo");
@@ -25,9 +26,6 @@ app.get("/", (req, res) => {
     res.json(User);
   });
 
-  User.findAll().then((users) => {
-    res.json(users);
-  });
   
 });
 */

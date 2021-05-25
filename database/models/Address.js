@@ -1,18 +1,17 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../db");
 
-class Post extends Model {}
+class Address extends Model {}
 
-Post.init(
+Address.init(
   {
-    title: DataTypes.STRING,
-    body: DataTypes.TEXT,
+    street: DataTypes.STRING,
   },
   {
     sequelize,
-    modelName: "post",
+    modelName: "address",
     timestamps: false,
   }
 );
 
-module.exports = Post;
+module.exports = Address;

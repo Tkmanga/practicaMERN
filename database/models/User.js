@@ -62,6 +62,7 @@ User.init(
   {
     sequelize,
     modelName: "users",
+    timestamps: false,
   } //nombre de la tabla
 );
 

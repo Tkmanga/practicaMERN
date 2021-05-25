@@ -1,4 +1,5 @@
 const express = require("express");
+const Address = require("../database/models/Address");
 const router = express.Router();
 const User = require("../database/models/User");
 
@@ -16,4 +17,16 @@ router.post("/", (req, res) => {
     });
 });
 
+router.get("/", (req, res) => {
+  User.findAll({
+    include: {
+      model: Address,
+      as: "domicilio",
+      attributes: ["street"],
+    },
+    attributes: ["name", "age"],
+  }).then((users) => {
+    res.json(users);
+  });
+});
 module.exports = router;
