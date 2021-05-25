@@ -2,10 +2,21 @@ const express = require("express");
 const app = express();
 const sequelize = require("./database/db");
 const User = require("./database/models/User");
+
 //Configuracion
 const port = process.env.PORT || 3000;
 //Routes
+
+// Middleware
+
+// para poder rellenar el req.body
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use("/api/posts", require("./routes/Posts"));
+
 app.get("/", (req, res) => {
+  res.json("hola mundo");
+  /* 
   User.create({
     name: "jose",
     birthday: new Date(1999, 4, 6),
@@ -16,6 +27,7 @@ app.get("/", (req, res) => {
   User.findAll().then((users) => {
     res.json(users);
   });
+  */
 });
 //Start
 app.listen(port, () => {
