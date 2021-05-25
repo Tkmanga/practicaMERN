@@ -13,10 +13,11 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/posts", require("./routes/Posts"));
-
+app.use("/api/users", require("./routes/Users"));
+/* 
 app.get("/", (req, res) => {
   res.json("hola mundo");
-  /* 
+  
   User.create({
     name: "jose",
     birthday: new Date(1999, 4, 6),
@@ -27,8 +28,10 @@ app.get("/", (req, res) => {
   User.findAll().then((users) => {
     res.json(users);
   });
-  */
+  
 });
+*/
+
 //Start
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
