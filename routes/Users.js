@@ -7,9 +7,13 @@ router.post("/", (req, res) => {
     name: req.body.name,
     email: req.body.email,
     age: req.body.age,
-  }).then((result) => {
-    res.json(result);
-  });
+  })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.json(error);
+    });
 });
 
 module.exports = router;
