@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/posts", require("./routes/Posts"));
 app.use("/api/users", require("./routes/Users"));
 app.use("/api/adresses", require("./routes/Addresses"));
+app.use("/api/posts", require("./routes/Posts"));
 /* 
 app.get("/", (req, res) => {
   res.json("hola mundo");

@@ -15,4 +15,13 @@ router.get("/", (req, res) => {
     res.json(addresses);
   });
 });
+
+router.post("/", (req, res) => {
+  Adress.create({
+    street: req.body.street,
+  }).then((Adresses) => {
+    res.json(Adresses);
+  });
+});
+
 module.exports = router;

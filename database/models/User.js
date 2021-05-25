@@ -57,11 +57,11 @@ User.init(
       },
     },
     //Si es 0 es usuario comun y 1 es administradaor
-    role: DataTypes.INTEGER,
+    role: { type: DataTypes.INTEGER, defaultValue: 0 },
   },
   {
     sequelize,
-    modelName: "users",
+    modelName: "user",
     timestamps: false,
   } //nombre de la tabla
 );
