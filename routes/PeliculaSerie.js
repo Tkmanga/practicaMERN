@@ -2,21 +2,6 @@ const express = require("express");
 const router = express.Router();
 const PeliculaSerie = require("../database/models/PeliculaSerie");
 
-router.post("/", (req, res) => {
-  PeliculaSerie.create({
-    titulo: req.body.titulo,
-    fechaDeCreacion: req.body.fechaDeCreacion,
-    calificacion: req.body.calificacion,
-    historia: req.body.historia,
-  })
-    .then((result) => {
-      res.json(result);
-    })
-    .catch((error) => {
-      res.json(error);
-    });
-});
-
 router.get("/", (req, res) => {
   PeliculaSerie.findAll({
     attributes: ["titulo", "fechaDeCreacion"],
@@ -24,6 +9,61 @@ router.get("/", (req, res) => {
     res.json(PeliculaSerie);
   });
 });
+
+//CREATE whitout character ?
+router.post("/", (req, res) => {
+  PeliculaSerie.create({
+    titulo: req.body.titulo,
+    fechaDeCreacion: req.body.fechaDeCreacion,
+    calificacion: req.body.calificacion,
+    historia: req.body.historia,
+  })
+    .then((peliculaSerie) => {
+      res.json(peliculaSerie);
+    })
+    .catch((error) => {
+      res.json(error);
+    });
+});
+
+//READ
+router.get("/:id", (req, res) => {
+  PeliculaSerie.findByPk(req.params.id).then((post) => {
+    res.json(post);
+  });
+});
+
+//UPDATE
+router.patch("/:id", (req, res) => {
+  PeliculaSerie.update(
+    {
+      titulo: req.body.titulo,
+      fechaDeCreacion: req.body.fechaDeCreacion,
+      calificacion: req.body.calificacion,
+      historia: req.body.historia,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  ).then((result) => {
+    res.json(result);
+  });
+});
+
+//DELETE
+
+router.delete("/:id", (req, res) => {
+  PeliculaSerie.destroy({
+    where: {
+      id: req.params.id,
+    },
+  }).then((result) => {
+    res.json(result);
+  });
+});
+
 module.exports = router;
 
 // ver la direccion de usuario /api/Personajes/:id/domicilio
