@@ -37,7 +37,7 @@ app.listen(port, () => {
   //db
   //force true: drop tables
   sequelize
-    .sync({ force: false })
+    .sync({ force: true })
     .then(() => {
       console.log("nos conectamos");
     })
