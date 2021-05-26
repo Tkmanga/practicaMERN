@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Personaje = require("../database/models/Personaje");
-const Pelicula = require("../database/models/PeliculaSerie");
 //CREATE whitout character ?
 router.post("/", (req, res) => {
   Personaje.create(
@@ -14,7 +13,6 @@ router.post("/", (req, res) => {
         titulo: req.body.titulo,
         fechaDeCreacion: req.body.fechaDeCreacion,
         calificacion: req.body.calificacion,
-        historia: req.body.historia,
       },
     },
     {
@@ -28,22 +26,7 @@ router.post("/", (req, res) => {
       res.json(error);
     });
 });
-/*
-router.post("/", (req, res) => {
-  PeliculaSerie.create({
-    titulo: req.body.titulo,
-    fechaDeCreacion: req.body.fechaDeCreacion,
-    calificacion: req.body.calificacion,
-    historia: req.body.historia,
-  })
-    .then((peliculaSerie) => {
-      res.json(peliculaSerie);
-    })
-    .catch((error) => {
-      res.json(error);
-    });
-});
-*/
+
 //READ
 router.get("/:id", (req, res) => {
   PeliculaSerie.findByPk(req.params.id).then((post) => {
@@ -82,6 +65,14 @@ router.delete("/:id", (req, res) => {
   });
 });
 
+router.get("/", (req, res) => {
+  Personaje.findAll({
+    attributes: ["nombre"],
+  }).then((Personajes) => {
+    res.json(Personajes);
+  });
+});
+module.exports = router;
 // ver la direccion de usuario /api/Personajes/:id/domicilio
 /*
 router.get("/:id/domicilio", (req, res) => {
@@ -109,12 +100,3 @@ router.get("/:id/bandas", (req, res) => {
 });
 
 */
-
-router.get("/", (req, res) => {
-  Personaje.findAll({
-    attributes: ["nombre"],
-  }).then((Personajes) => {
-    res.json(Personajes);
-  });
-});
-module.exports = router;

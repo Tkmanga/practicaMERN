@@ -23,19 +23,7 @@ router.post("/", (req, res) => {
       res.json(error);
     });
 });
-/*
-router.post("/", (req, res) => {
-  Genero.create({
-    nombre: req.body.nombre,
-  })
-    .then((Genero) => {
-      res.json(Genero);
-    })
-    .catch((error) => {
-      res.json(error);
-    });
-});
-*/
+
 //READ
 router.get("/:id", (req, res) => {
   Genero.findByPk(req.params.id).then((post) => {
@@ -70,34 +58,6 @@ router.delete("/:id", (req, res) => {
     res.json(result);
   });
 });
-
-// ver la direccion de usuario /api/Personajes/:id/domicilio
-/*
-router.get("/:id/domicilio", (req, res) => {
-  Personaje.findByPk(req.params.id).then((Personaje) => {
-    Personaje.getDomicilio().then((domicilio) => {
-      res.json(domicilio);
-    });
-  });
-});
-//ver las publicaciones de un usuario
-router.get("/:id/publicaciones", (req, res) => {
-  Personaje.findByPk(req.params.id).then((Personaje) => {
-    Personaje.getPublicaciones().then((publicacion) => {
-      res.json(publicacion);
-    });
-  });
-});
-//ver las bandas de un usuario
-router.get("/:id/bandas", (req, res) => {
-  Personaje.findByPk(req.params.id).then((Personaje) => {
-    Personaje.getBands({ attributes: ["name", "type"] }).then((bands) => {
-      res.json(bands);
-    });
-  });
-});
-
-*/
 
 router.get("/", (req, res) => {
   Genero.findAll({

@@ -17,7 +17,6 @@ router.post("/", (req, res) => {
       titulo: req.body.titulo,
       fechaDeCreacion: req.body.fechaDeCreacion,
       calificacion: req.body.calificacion,
-      historia: req.body.historia,
       personajes: {
         nombre: req.body.nombre,
         edad: req.body.edad,
