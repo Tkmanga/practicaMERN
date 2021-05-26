@@ -1,57 +1,53 @@
 const express = require("express");
 const router = express.Router();
-const PeliculaSerie = require("../database/models/PeliculaSerie");
-
-router.get("/", (req, res) => {
-  PeliculaSerie.findAll({
-    attributes: ["titulo", "fechaDeCreacion"],
-  }).then((PeliculaSerie) => {
-    res.json(PeliculaSerie);
-  });
-});
-
+const Genero = require("../database/models/Genero");
 //CREATE whitout character ?
 router.post("/", (req, res) => {
-  PeliculaSerie.create(
+  Genero.create(
     {
-      titulo: req.body.titulo,
-      fechaDeCreacion: req.body.fechaDeCreacion,
-      calificacion: req.body.calificacion,
-      historia: req.body.historia,
-      personajes: {
-        nombre: req.body.nombre,
-        edad: req.body.edad,
-        peso: req.body.peso,
-        historia: req.body.historia,
+      nombre: req.body.nombre,
+      peliculaSeries: {
+        titulo: req.body.titulo,
+        fechaDeCreacion: req.body.fechaDeCreacion,
+        calificacion: req.body.calificacion,
       },
     },
     {
-      include: "personajes",
+      include: "peliculaSeries",
     }
   )
-    .then((peliculaSerie) => {
-      res.json(peliculaSerie);
+    .then((result) => {
+      res.json(result);
     })
     .catch((error) => {
       res.json(error);
     });
 });
-
+/*
+router.post("/", (req, res) => {
+  Genero.create({
+    nombre: req.body.nombre,
+  })
+    .then((Genero) => {
+      res.json(Genero);
+    })
+    .catch((error) => {
+      res.json(error);
+    });
+});
+*/
 //READ
 router.get("/:id", (req, res) => {
-  PeliculaSerie.findByPk(req.params.id).then((post) => {
+  Genero.findByPk(req.params.id).then((post) => {
     res.json(post);
   });
 });
 
 //UPDATE
 router.patch("/:id", (req, res) => {
-  PeliculaSerie.update(
+  Genero.update(
     {
-      titulo: req.body.titulo,
-      fechaDeCreacion: req.body.fechaDeCreacion,
-      calificacion: req.body.calificacion,
-      historia: req.body.historia,
+      nombre: req.body.nombre,
     },
     {
       where: {
@@ -66,7 +62,7 @@ router.patch("/:id", (req, res) => {
 //DELETE
 
 router.delete("/:id", (req, res) => {
-  PeliculaSerie.destroy({
+  Genero.destroy({
     where: {
       id: req.params.id,
     },
@@ -74,8 +70,6 @@ router.delete("/:id", (req, res) => {
     res.json(result);
   });
 });
-
-module.exports = router;
 
 // ver la direccion de usuario /api/Personajes/:id/domicilio
 /*
@@ -104,3 +98,12 @@ router.get("/:id/bandas", (req, res) => {
 });
 
 */
+
+router.get("/", (req, res) => {
+  Genero.findAll({
+    attributes: ["nombre"],
+  }).then((resul) => {
+    res.json(resul);
+  });
+});
+module.exports = router;

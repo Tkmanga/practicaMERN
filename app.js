@@ -18,8 +18,8 @@ app.use("/api/adresses", require("./routes/Addresses"));
 app.use("/api/posts", require("./routes/Posts"));
 app.use("/api/posts", require("./routes/Posts"));
 app.use("/api/characters", require("./routes/Personajes"));
-
-app.use("/api/movie", require("./routes/PeliculaSerie"));
+app.use("/api/movies", require("./routes/PeliculaSerie"));
+app.use("/api/genders", require("./routes/Genero"));
 /* 
 app.get("/", (req, res) => {
   res.json("hola mundo");
