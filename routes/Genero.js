@@ -66,4 +66,5 @@ router.get("/", (req, res) => {
     res.json(resul);
   });
 });
+
 module.exports = router;

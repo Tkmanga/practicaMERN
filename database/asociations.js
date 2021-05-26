@@ -3,11 +3,11 @@ const PeliculaSerie = require("./models/PeliculaSerie");
 const Personaje = require("./models/Personaje");
 
 //Probando
-Genero.belongsToMany(Personaje, {
-  through: "genero_personaje",
+Genero.belongsToMany(PeliculaSerie, {
+  through: "genero_peliculaSerie",
   timestamps: false,
 });
-Personaje.belongsToMany(Genero, { through: "genero_personaje" });
+PeliculaSerie.belongsToMany(Genero, { through: "genero_peliculaSerie" });
 
 Personaje.belongsToMany(PeliculaSerie, {
   through: "personaje_peliculaSerie",

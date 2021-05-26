@@ -17,12 +17,13 @@ app.use("/api/movies", require("./routes/PeliculaSerie"));
 app.use("/api/genders", require("./routes/Genero"));
 
 //Start
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
   //db
   //force true: drop tables
   sequelize
-    .sync({ force: false })
+    .sync({ force: true })
     .then(() => {
       console.log("nos conectamos");
     })
