@@ -17,6 +17,7 @@ router.post("/", (req, res) => {
       res.json(error);
     });
 });
+
 // ver la direccion de usuario /api/users/:id/domicilio
 router.get("/:id/domicilio", (req, res) => {
   User.findByPk(req.params.id).then((user) => {
@@ -25,6 +26,7 @@ router.get("/:id/domicilio", (req, res) => {
     });
   });
 });
+
 //ver las publicaciones de un usuario
 router.get("/:id/publicaciones", (req, res) => {
   User.findByPk(req.params.id).then((user) => {
@@ -33,6 +35,7 @@ router.get("/:id/publicaciones", (req, res) => {
     });
   });
 });
+
 //ver las bandas de un usuario
 router.get("/:id/bandas", (req, res) => {
   User.findByPk(req.params.id).then((user) => {

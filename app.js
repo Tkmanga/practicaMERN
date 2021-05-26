@@ -8,10 +8,10 @@ const port = process.env.PORT || 3000;
 //Routes
 
 // Middleware
-
-// para poder rellenar el req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+// para poder rellenar el req.body
+
 app.use("/api/posts", require("./routes/Posts"));
 app.use("/api/users", require("./routes/Users"));
 app.use("/api/adresses", require("./routes/Addresses"));
@@ -19,6 +19,7 @@ app.use("/api/posts", require("./routes/Posts"));
 app.use("/api/posts", require("./routes/Posts"));
 app.use("/api/characters", require("./routes/Personajes"));
 
+app.use("/api/movie", require("./routes/PeliculaSerie"));
 /* 
 app.get("/", (req, res) => {
   res.json("hola mundo");
