@@ -16,6 +16,9 @@ app.use("/api/posts", require("./routes/Posts"));
 app.use("/api/users", require("./routes/Users"));
 app.use("/api/adresses", require("./routes/Addresses"));
 app.use("/api/posts", require("./routes/Posts"));
+app.use("/api/posts", require("./routes/Posts"));
+app.use("/api/characters", require("./routes/Personajes"));
+
 /* 
 app.get("/", (req, res) => {
   res.json("hola mundo");
@@ -37,7 +40,7 @@ app.listen(port, () => {
   //db
   //force true: drop tables
   sequelize
-    .sync({ force: true })
+    .sync({ force: false })
     .then(() => {
       console.log("nos conectamos");
     })
