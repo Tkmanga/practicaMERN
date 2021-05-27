@@ -29,18 +29,22 @@ router.post("/", (req, res) => {
 
 //READ
 router.get("/:id", (req, res) => {
-  PeliculaSerie.findByPk(req.params.id).then((post) => {
-    res.json(post);
+  Personaje.findByPk(req.params.id).then((personaje) => {
+    personaje
+      .getPeliculaSeries({ attributes: ["titulo"] })
+      .then((peliculaSeries) => {
+        res.json({ personaje, peliculaSeries });
+      });
   });
 });
 
 //UPDATE
 router.patch("/:id", (req, res) => {
-  PeliculaSerie.update(
+  Personaje.update(
     {
-      titulo: req.body.titulo,
-      fechaDeCreacion: req.body.fechaDeCreacion,
-      calificacion: req.body.calificacion,
+      nombre: req.body.nombre,
+      edad: req.body.edad,
+      peso: req.body.peso,
       historia: req.body.historia,
     },
     {
@@ -48,15 +52,19 @@ router.patch("/:id", (req, res) => {
         id: req.params.id,
       },
     }
-  ).then((result) => {
-    res.json(result);
-  });
+  )
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((error) => {
+      res.json(error);
+    });
 });
 
 //DELETE
 
 router.delete("/:id", (req, res) => {
-  PeliculaSerie.destroy({
+  Personaje.destroy({
     where: {
       id: req.params.id,
     },
@@ -68,6 +76,7 @@ router.delete("/:id", (req, res) => {
 router.get("/", (req, res) => {
   Personaje.findAll({
     attributes: ["nombre"],
+    //aca deberia traer la img
   }).then((Personajes) => {
     res.json(Personajes);
   });
