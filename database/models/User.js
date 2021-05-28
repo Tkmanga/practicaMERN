@@ -23,6 +23,15 @@ User.init(
         },
       },
     },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    /*
     email: {
       type: DataTypes.STRING,
       validate: {
@@ -47,15 +56,16 @@ User.init(
           args: 100,
           msg: "La edad tiene como maximo 99 incuido",
         },
-        /*
         esPar(value){
           if(value % 2 ){
             throw new Error("la edad tiene que ser numero par");
           }
         }
-        */
+        
       },
     },
+
+    */
     //Si es 0 es usuario comun y 1 es administradaor
     role: { type: DataTypes.INTEGER, defaultValue: 0 },
   },

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Personaje = require("../database/models/Personaje");
 const Pelicula = require("../database/models/PeliculaSerie");
+const auth = require("../middlewares/auth");
 //CREATE whitout character ?
 router.post("/", (req, res) => {
   Personaje.create(

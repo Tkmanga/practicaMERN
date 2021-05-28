@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const PeliculaSerie = require("../database/models/PeliculaSerie");
-
-router.get("/", (req, res) => {
+const auth = require("../middlewares/auth");
+router.get("/", auth, (req, res) => {
   PeliculaSerie.findAll({
     attributes: ["titulo", "fechaDeCreacion"],
   }).then((PeliculaSerie) => {
@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
 });
 
 //CREATE whitout character ?
-router.post("/", (req, res) => {
+router.post("/", auth, (req, res) => {
   PeliculaSerie.create(
     {
       titulo: req.body.titulo,
@@ -38,14 +38,14 @@ router.post("/", (req, res) => {
 });
 
 //READ
-router.get("/:id", (req, res) => {
+router.get("/:id", auth, (req, res) => {
   PeliculaSerie.findByPk(req.params.id).then((post) => {
     res.json(post);
   });
 });
 
 //UPDATE
-router.patch("/:id", (req, res) => {
+router.patch("/:id", auth, (req, res) => {
   PeliculaSerie.update(
     {
       titulo: req.body.titulo,
@@ -65,7 +65,7 @@ router.patch("/:id", (req, res) => {
 
 //DELETE
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", auth, (req, res) => {
   PeliculaSerie.destroy({
     where: {
       id: req.params.id,

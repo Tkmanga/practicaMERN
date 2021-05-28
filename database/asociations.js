@@ -9,14 +9,14 @@ const Personaje = require("./models/Personaje");
 //Uno a uno
 //Usuario tiene una direccion
 //Añade una clave foranea userID a la tabla addresses
-User.hasOne(Address, { as: "domicilio", foreignKey: "residente_id" });
+//User.hasOne(Address, { as: "domicilio", foreignKey: "residente_id" });
 //Añade una clave userId a la tabla User
-Address.belongsTo(User, { as: "residente", foreignKey: "residente_id" });
+//Address.belongsTo(User, { as: "residente", foreignKey: "residente_id" });
 
 //Usuario va tener muchos post
 //se añade una clave userId a la tabla post
-User.hasMany(Post, { as: "publicaciones", foreignKey: "autorId" });
-Post.belongsTo(User, { as: "autor" });
+//User.hasMany(Post, { as: "publicaciones", foreignKey: "autorId" });
+//Post.belongsTo(User, { as: "autor" });
 
 //NaN
 //El usuario pertenece a varias bandas

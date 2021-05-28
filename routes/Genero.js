@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const Genero = require("../database/models/Genero");
+
+const auth = require("../middlewares/auth");
 //CREATE whitout character ?
-router.post("/", (req, res) => {
+router.post("/", auth, (req, res) => {
   Genero.create(
     {
       nombre: req.body.nombre,
@@ -37,14 +39,14 @@ router.post("/", (req, res) => {
 });
 */
 //READ
-router.get("/:id", (req, res) => {
+router.get("/:id", auth, (req, res) => {
   Genero.findByPk(req.params.id).then((post) => {
     res.json(post);
   });
 });
 
 //UPDATE
-router.patch("/:id", (req, res) => {
+router.patch("/:id", auth, (req, res) => {
   Genero.update(
     {
       nombre: req.body.nombre,
@@ -61,7 +63,7 @@ router.patch("/:id", (req, res) => {
 
 //DELETE
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", auth, (req, res) => {
   Genero.destroy({
     where: {
       id: req.params.id,
@@ -99,7 +101,7 @@ router.get("/:id/bandas", (req, res) => {
 
 */
 
-router.get("/", (req, res) => {
+router.get("/", auth, (req, res) => {
   Genero.findAll({
     attributes: ["nombre"],
   }).then((resul) => {

@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000;
 //Routes
 
 // Middleware
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // para poder rellenar el req.body
