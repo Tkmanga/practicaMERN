@@ -5,13 +5,12 @@ require("./database/asociations");
 
 //Configuracion
 const port = process.env.PORT || 3000;
-//Routes
 
-// Middleware
+// Middleware basicos
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// para poder rellenar el req.body
 
+//Routes
 app.use("/api/characters", require("./routes/Personajes"));
 app.use("/api/movies", require("./routes/PeliculaSerie"));
 app.use("/api/genders", require("./routes/Genero"));
@@ -20,7 +19,7 @@ app.use("/api/genders", require("./routes/Genero"));
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
-  //db
+
   //force true: drop tables
   sequelize
     .sync({ force: false })
