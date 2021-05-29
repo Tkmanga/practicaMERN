@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require("../database/models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-router.post("/signup", (req, res) => {
+router.post("/register", (req, res) => {
   let password = bcrypt.hashSync(req.body.password, 10);
   User.create({
     name: req.body.name,
@@ -16,7 +16,6 @@ router.post("/signup", (req, res) => {
       let token = jwt.sign({ user: user }, "wololo", {
         expiresIn: "1d",
       });
-      console.log(token);
       res.json({
         user: user,
         token: token,
@@ -54,7 +53,7 @@ router.get("/:id/bandas", (req, res) => {
   });
 });
 */
-router.get("/signin", (req, res) => {
+router.get("/login", (req, res) => {
   let { email, password } = req.body;
   User.findOne({
     where: {

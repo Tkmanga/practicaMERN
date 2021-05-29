@@ -1,0 +1,89 @@
+@local = http://localhost:3000/auth/
+@api = http://localhost:3000/api
+
+@tokenTemp = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJuYW1lIjoiam9zZSIsInBhc3N3b3JkIjoiJDJiJDEwJFlXOUh0cm1rMUlCOFlHZUYzazVUOWVrLklCTi5OSGtWV1pDbTgvajNhWloxa0l0NExNOXVPIiwiZW1haWwiOiJ0YWNhY2hvam9zZUBnbWFpbC5jb20iLCJyb2xlIjowfSwiaWF0IjoxNjIyMzAxNjE2LCJleHAiOjE2MjIzODgwMTZ9.O13ZQLs5pSCfpJ_YayBE5JV53i2fZDgcEveX4FubKw0
+
+### POST crear usuario 
+POST {{local}}/register
+Content-Type: application/json
+
+{
+  "name": "jose",
+  "password": "123456",
+  "email":"tacachojose@gmail.com"
+}
+
+### GET logearse 
+
+GET {{local}}/login
+Content-Type:  application/json
+
+{
+  "email":"tacachojose@gmail.com",
+  "password": "123456"
+}
+
+### CHARACTERS /////////////////////////////////////////////////////////////////
+
+### GET TODOS LOS PERSONAJES 
+GET {{api}}/characters HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
+### GET 1 PERSONAJE POR ID 
+
+GET {{api}}/characters/1 HTTP/1.1
+Content-Type:  application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
+### POST 1 ACTUALIZAR 1 PERSONAJE 
+
+PATCH {{api}}/characters/1 HTTP/1.1
+Content-Type:  application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
+{
+  "email":"tacachojose@gmail.com",
+  "password": "123456"
+}
+
+### GET 1 PERSONAJE POR ID 
+
+DELETE {{api}}/characters/1 HTTP/1.1
+Content-Type:  application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
+### MOVIES ////////////////////////////////////////////////////////////////////
+
+GET {{api}}/movies HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
+GET {{api}}/movies HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
+### GENDERS ////////////////////////////////////////////////////////////////////
+
+### Get all genders 
+GET {{api}}/genders HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
+### GET 1 PERSONAJE POR ID
+
+GET {{api}}/genders/1 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
+### UPDATE 1 PERSONAJE POR ID
+
+PATCH {{api}}/genders/1 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
+### 
+
+DELETE {{api}}/genders/1 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
