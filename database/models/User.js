@@ -31,41 +31,6 @@ User.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    /*
-    email: {
-      type: DataTypes.STRING,
-      validate: {
-        isEmail: {
-          args: true,
-          msg: "El email no es valido",
-        },
-      },
-    },
-    age: {
-      type: DataTypes.INTEGER,
-      validate: {
-        isInt: {
-          args: true,
-          msg: "La edad tiene que ser un numero",
-        },
-        min: {
-          args: 1,
-          msg: "La edad tiene que ser mayor a 1",
-        },
-        max: {
-          args: 100,
-          msg: "La edad tiene como maximo 99 incuido",
-        },
-        esPar(value){
-          if(value % 2 ){
-            throw new Error("la edad tiene que ser numero par");
-          }
-        }
-        
-      },
-    },
-
-    */
     //Si es 0 es usuario comun y 1 es administradaor
     role: { type: DataTypes.INTEGER, defaultValue: 0 },
   },

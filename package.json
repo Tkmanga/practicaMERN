@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "prestart": "node seed.js",
     "start": "nodemon app.js"
   },
   "repository": {

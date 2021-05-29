@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../database/models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
 router.post("/register", (req, res) => {
   let password = bcrypt.hashSync(req.body.password, 10);
   User.create({
@@ -25,34 +26,7 @@ router.post("/register", (req, res) => {
       res.json(error);
     });
 });
-/*
-// ver la direccion de usuario /api/users/:id/domicilio
-router.get("/:id/domicilio", (req, res) => {
-  User.findByPk(req.params.id).then((user) => {
-    user.getDomicilio().then((domicilio) => {
-      res.json(domicilio);
-    });
-  });
-});
 
-//ver las publicaciones de un usuario
-router.get("/:id/publicaciones", (req, res) => {
-  User.findByPk(req.params.id).then((user) => {
-    user.getPublicaciones().then((publicacion) => {
-      res.json(publicacion);
-    });
-  });
-});
-
-//ver las bandas de un usuario
-router.get("/:id/bandas", (req, res) => {
-  User.findByPk(req.params.id).then((user) => {
-    user.getBands({ attributes: ["name", "type"] }).then((bands) => {
-      res.json(bands);
-    });
-  });
-});
-*/
 router.get("/login", (req, res) => {
   let { email, password } = req.body;
   User.findOne({
