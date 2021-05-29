@@ -29,7 +29,7 @@ POST {{api}}/characters HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Authorization: jwt {{tokenTemp}}
 
-nombre='AAAAAAA'&edad=60&peso=60&historia="Lorem ."&titulo="volver al pasado 1"&fechaDeCreacion="2010-12-31"&calificacion=5
+nombre=AAAAAAA&edad=60&peso=60&historia=Lorem_.&titulo=volver al pasado 1&fechaDeCreacion=2010-12-31&calificacion=5
 
 
 ### GET TODOS LOS PERSONAJES 
@@ -49,19 +49,23 @@ PATCH {{api}}/characters/1 HTTP/1.1
 Content-Type:  application/x-www-form-urlencoded
 Authorization: jwt {{tokenTemp}}
 
-{
-  "email":"tacachojose@gmail.com",
-  "password": "123456"
-}
+nombre=CCCCC
 
 ### GET 1 PERSONAJE POR ID 
 
-DELETE {{api}}/characters/1 HTTP/1.1
+DELETE {{api}}/characters/19 HTTP/1.1
 Content-Type:  application/x-www-form-urlencoded
 Authorization: jwt {{tokenTemp}}
 
 ### MOVIES ////////////////////////////////////////////////////////////////////
 
+POST {{api}}/movies HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
+titulo=NDEAA&fechaDeCreacion=2010-12-31&calificacion=4&nombre=jorge&edad=20&peso=10&historia=eraCurioso
+
+###
 GET {{api}}/movies HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Authorization: jwt {{tokenTemp}}
@@ -69,6 +73,19 @@ Authorization: jwt {{tokenTemp}}
 ### 
 GET {{api}}/movies/1 HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
+### 
+PATCH  {{api}}/movies/1 HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
+titulo=PONELE
+
+### GET 1 PERSONAJE POR ID 
+
+DELETE {{api}}/movies/4 HTTP/1.1
+Content-Type:  application/x-www-form-urlencoded
 Authorization: jwt {{tokenTemp}}
 
 ### GENDERS ////////////////////////////////////////////////////////////////////
@@ -90,9 +107,7 @@ PATCH {{api}}/genders/1 HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Authorization: jwt {{tokenTemp}}
 
-{
-  "nombre" : "probando desde vsCode"
-}
+nombre=DDDDDD
 
 ### 
 

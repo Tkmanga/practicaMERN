@@ -41,9 +41,9 @@ router.get("/:id", auth, (req, res) => {
 router.patch("/:id", auth, (req, res) => {
   Personaje.update(
     {
-      titulo: req.body.titulo,
-      fechaDeCreacion: req.body.fechaDeCreacion,
-      calificacion: req.body.calificacion,
+      nombre: req.body.nombre,
+      edad: req.body.edad,
+      peso: req.body.peso,
       historia: req.body.historia,
     },
     {
