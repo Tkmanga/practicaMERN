@@ -39,8 +39,10 @@ router.post("/", auth, (req, res) => {
 
 //READ
 router.get("/:id", auth, (req, res) => {
-  PeliculaSerie.findByPk(req.params.id).then((post) => {
-    res.json(post);
+  PeliculaSerie.findByPk(req.params.id).then((peliSerie) => {
+    peliSerie.getPersonajes().then((personajes) => {
+      res.json({ peliSerie, personajes });
+    });
   });
 });
 

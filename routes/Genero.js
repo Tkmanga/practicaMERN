@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Genero = require("../database/models/Genero");
-
 const auth = require("../middlewares/auth");
+
 //CREATE whitout character ?
 router.post("/", auth, (req, res) => {
   Genero.create(
@@ -25,19 +25,7 @@ router.post("/", auth, (req, res) => {
       res.json(error);
     });
 });
-/*
-router.post("/", (req, res) => {
-  Genero.create({
-    nombre: req.body.nombre,
-  })
-    .then((Genero) => {
-      res.json(Genero);
-    })
-    .catch((error) => {
-      res.json(error);
-    });
-});
-*/
+
 //READ
 router.get("/:id", auth, (req, res) => {
   Genero.findByPk(req.params.id).then((post) => {
@@ -73,6 +61,29 @@ router.delete("/:id", auth, (req, res) => {
   });
 });
 
+router.get("/", auth, (req, res) => {
+  Genero.findAll({
+    attributes: ["nombre"],
+  }).then((resul) => {
+    res.json(resul);
+  });
+});
+module.exports = router;
+
+/*
+router.post("/", (req, res) => {
+  Genero.create({
+    nombre: req.body.nombre,
+  })
+    .then((Genero) => {
+      res.json(Genero);
+    })
+    .catch((error) => {
+      res.json(error);
+    });
+});
+*/
+
 // ver la direccion de usuario /api/Personajes/:id/domicilio
 /*
 router.get("/:id/domicilio", (req, res) => {
@@ -100,12 +111,3 @@ router.get("/:id/bandas", (req, res) => {
 });
 
 */
-
-router.get("/", auth, (req, res) => {
-  Genero.findAll({
-    attributes: ["nombre"],
-  }).then((resul) => {
-    res.json(resul);
-  });
-});
-module.exports = router;

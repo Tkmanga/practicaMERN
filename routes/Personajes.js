@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Personaje = require("../database/models/Personaje");
-const Pelicula = require("../database/models/PeliculaSerie");
 const auth = require("../middlewares/auth");
 //CREATE whitout character ?
 router.post("/", auth, (req, res) => {
@@ -29,32 +28,18 @@ router.post("/", auth, (req, res) => {
       res.json(error);
     });
 });
-/*
-router.post("/", (req, res) => {
-  PeliculaSerie.create({
-    titulo: req.body.titulo,
-    fechaDeCreacion: req.body.fechaDeCreacion,
-    calificacion: req.body.calificacion,
-    historia: req.body.historia,
-  })
-    .then((peliculaSerie) => {
-      res.json(peliculaSerie);
-    })
-    .catch((error) => {
-      res.json(error);
-    });
-});
-*/
 //READ
 router.get("/:id", auth, (req, res) => {
-  PeliculaSerie.findByPk(req.params.id).then((post) => {
-    res.json(post);
+  Personaje.findByPk(req.params.id).then((personaje) => {
+    personaje.getPeliculaSeries().then((peliculaSeries) => {
+      res.json({ personaje, peliculaSeries });
+    });
   });
 });
 
 //UPDATE
 router.patch("/:id", auth, (req, res) => {
-  PeliculaSerie.update(
+  Personaje.update(
     {
       titulo: req.body.titulo,
       fechaDeCreacion: req.body.fechaDeCreacion,
@@ -74,7 +59,7 @@ router.patch("/:id", auth, (req, res) => {
 //DELETE
 
 router.delete("/:id", auth, (req, res) => {
-  PeliculaSerie.destroy({
+  Personaje.destroy({
     where: {
       id: req.params.id,
     },
@@ -82,6 +67,15 @@ router.delete("/:id", auth, (req, res) => {
     res.json(result);
   });
 });
+
+router.get("/", auth, (req, res) => {
+  Personaje.findAll({
+    attributes: ["nombre"],
+  }).then((Personajes) => {
+    res.json(Personajes);
+  });
+});
+module.exports = router;
 
 // ver la direccion de usuario /api/Personajes/:id/domicilio
 /*
@@ -111,11 +105,19 @@ router.get("/:id/bandas", (req, res) => {
 
 */
 
-router.get("/", auth, (req, res) => {
-  Personaje.findAll({
-    attributes: ["nombre"],
-  }).then((Personajes) => {
-    res.json(Personajes);
-  });
+/*
+router.post("/", (req, res) => {
+  PeliculaSerie.create({
+    titulo: req.body.titulo,
+    fechaDeCreacion: req.body.fechaDeCreacion,
+    calificacion: req.body.calificacion,
+    historia: req.body.historia,
+  })
+    .then((peliculaSerie) => {
+      res.json(peliculaSerie);
+    })
+    .catch((error) => {
+      res.json(error);
+    });
 });
-module.exports = router;
+*/

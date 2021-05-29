@@ -1,8 +1,3 @@
-const User = require("./models/User");
-const Address = require("./models/Address");
-const Post = require("./models/Post");
-const Band = require("./models/Band");
-
 const Genero = require("./models/Genero");
 const PeliculaSerie = require("./models/PeliculaSerie");
 const Personaje = require("./models/Personaje");
@@ -22,8 +17,8 @@ const Personaje = require("./models/Personaje");
 //El usuario pertenece a varias bandas
 //Esto crea una nueva tabla en la base de datos
 //esto añade funciones user.addBands user.getBands
-User.belongsToMany(Band, { through: "user_band", timestamps: false });
-Band.belongsToMany(User, { through: "user_band" });
+//User.belongsToMany(Band, { through: "user_band", timestamps: false });
+//Band.belongsToMany(User, { through: "user_band" });
 
 //Probando
 Genero.belongsToMany(Personaje, {
