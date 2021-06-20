@@ -1,7 +1,7 @@
 module.exports = {
   database: {
     username: "root",
-    password: "boldt1234",
+    password: "1596taka",
     database: "alkemy",
     host: "localhost",
   },
