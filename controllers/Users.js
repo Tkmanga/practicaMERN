@@ -3,8 +3,13 @@ const User = require("../database/models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+const sendEmail = require("../utils/sendEmail"); 
 var controller = {
     register: (req, res) => {
+        const from = "tacachojose@gmail.com"
+        const to = req.body.email 
+        const subject = "Bienvenide a nuestra Api!"
+        const text = "Bienvenide a nuestra Basic API !"
         let password = bcrypt.hashSync(req.body.password, 10);
         User.create({
         name: req.body.name,
@@ -16,7 +21,8 @@ var controller = {
             let token = jwt.sign({ user: user }, "wololo", {
             expiresIn: "1d",
             });
-            res.json({
+            sendEmail(to,from,subject,text)
+            res.json({  
               user: user,
               token: token,
             });
