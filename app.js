@@ -17,6 +17,7 @@ app.use("/api/characters", require("./routes/Personajes"));
 app.use("/api/movies", require("./routes/PeliculaSerie"));
 app.use("/api/genders", require("./routes/Genero"));
 
+
 //Start
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

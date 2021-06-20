@@ -1,71 +1,24 @@
 const express = require("express");
+var GeneroController = require("../controllers/Genero");
 const router = express.Router();
-const Genero = require("../database/models/Genero");
 const auth = require("../middlewares/auth");
 
+//test de controlador tabla
+router.get('/test-de-controlador',GeneroController.test); 
+
 //CREATE whitout character ?
-router.post("/", auth, (req, res) => {
-  Genero.create(
-    {
-      nombre: req.body.nombre,
-      peliculaSeries: {
-        titulo: req.body.titulo,
-        fechaDeCreacion: req.body.fechaDeCreacion,
-        calificacion: req.body.calificacion,
-      },
-    },
-    {
-      include: "peliculaSeries",
-    }
-  )
-    .then((result) => {
-      res.json(result);
-    })
-    .catch((error) => {
-      res.json(error);
-    });
-});
+router.post("/", auth, GeneroController.create);
 
 //READ
-router.get("/:id", auth, (req, res) => {
-  Genero.findByPk(req.params.id).then((post) => {
-    res.json(post);
-  });
-});
+router.get("/:id", auth,GeneroController.findById);
 
 //UPDATE
-router.patch("/:id", auth, (req, res) => {
-  Genero.update(
-    {
-      nombre: req.body.nombre,
-    },
-    {
-      where: {
-        id: req.params.id,
-      },
-    }
-  ).then((result) => {
-    res.json(result);
-  });
-});
+router.patch("/:id", auth, GeneroController.update);
 
 //DELETE
+router.delete("/:id", auth, GeneroController.delete);
 
-router.delete("/:id", auth, (req, res) => {
-  Genero.destroy({
-    where: {
-      id: req.params.id,
-    },
-  }).then((result) => {
-    res.json(result);
-  });
-});
+// ALL
+router.get("/", auth, GeneroController.all);
 
-router.get("/", auth, (req, res) => {
-  Genero.findAll({
-    attributes: ["nombre"],
-  }).then((resul) => {
-    res.json(resul);
-  });
-});
 module.exports = router;

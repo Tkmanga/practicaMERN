@@ -1,79 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const PeliculaSerie = require("../database/models/PeliculaSerie");
 const auth = require("../middlewares/auth");
-router.get("/", auth, (req, res) => {
-  PeliculaSerie.findAll({
-    attributes: ["titulo", "fechaDeCreacion"],
-  }).then((PeliculaSerie) => {
-    res.json(PeliculaSerie);
-  });
-});
+const PeliculaSerieController = require("../controllers/PeliculaSerie"); 
+// ALL
+router.get("/", auth, PeliculaSerieController.all);
 
 //CREATE whitout character ?
-router.post("/", auth, (req, res) => {
-  PeliculaSerie.create(
-    {
-      titulo: req.body.titulo,
-      fechaDeCreacion: req.body.fechaDeCreacion,
-      calificacion: req.body.calificacion,
-      personajes: {
-        nombre: req.body.nombre,
-        edad: req.body.edad,
-        peso: req.body.peso,
-        historia: req.body.historia,
-      },
-    },
-    {
-      include: "personajes",
-    }
-  )
-    .then((peliculaSerie) => {
-      res.json(peliculaSerie);
-    })
-    .catch((error) => {
-      res.json(error);
-    });
-});
+router.post("/", auth, PeliculaSerieController.create);
 
 //READ
-router.get("/:id", auth, (req, res) => {
-  PeliculaSerie.findByPk(req.params.id).then((peliSerie) => {
-    peliSerie.getPersonajes().then((personajes) => {
-      res.json({ peliSerie, personajes });
-    });
-  });
-});
+router.get("/:id", auth, PeliculaSerieController.read);
 
 //UPDATE
-router.patch("/:id", auth, (req, res) => {
-  PeliculaSerie.update(
-    {
-      titulo: req.body.titulo,
-      fechaDeCreacion: req.body.fechaDeCreacion,
-      calificacion: req.body.calificacion,
-      historia: req.body.historia,
-    },
-    {
-      where: {
-        id: req.params.id,
-      },
-    }
-  ).then((result) => {
-    res.json(result);
-  });
-});
+router.patch("/:id", auth,PeliculaSerieController.update);
 
 //DELETE
-
-router.delete("/:id", auth, (req, res) => {
-  PeliculaSerie.destroy({
-    where: {
-      id: req.params.id,
-    },
-  }).then((result) => {
-    res.json(result);
-  });
-});
+router.delete("/:id", auth, PeliculaSerieController.delete);
 
 module.exports = router;
