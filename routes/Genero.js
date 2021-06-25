@@ -62,7 +62,7 @@ router.get("/", auth, GeneroController.all);
  *  post: 
  *    tags: [Genero]    
  *    summary: Crear el genero #id
- *    description: solo para probar el controlador 
+ *    description: Crea el genero en la db 
  *    requestBody: 
  *      required: true 
  *      content: 
@@ -98,7 +98,7 @@ router.post("/", auth, GeneroController.create);
  *        schema:
  *          type: string
  *        required: true
- *        description: The book id
+ *        description: el genero #id
  *    summary: Traer el genero #id
  *    description: Traer el genero #id 
  *    responses: 
@@ -118,7 +118,7 @@ router.post("/", auth, GeneroController.create);
 router.get("/:id", auth,GeneroController.findById);
 
 
-
+router.get("/:nombre", auth,GeneroController.findByName);
 
 //UPDATE
 /**
@@ -143,7 +143,7 @@ router.get("/:id", auth,GeneroController.findById);
  *            $ref: '#/components/schemas/Genero'  
  *    responses: 
  *      '200':
- *        description: 'Para actualizar la id'
+ *        description: 'Para actualizar el genero #id'
  *        content:
  *          application/json:
  *              schema:

@@ -35,6 +35,11 @@ var controller = {
         res.json(post);
         });
     },
+    findByName: (req,res)=>{
+        Genero.findOne({where: {nombre: req.params.nombre}}).then((result) => {
+            res.json(result);
+        })
+    },
     update: (req, res) => {
         Genero.update(
         {

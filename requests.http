@@ -1,7 +1,7 @@
 @local = http://localhost:3000/auth/
 @api = http://localhost:3000/api
 
-@tokenTemp = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InJvbGUiOjAsImlkIjoyLCJuYW1lIjoiam9zZSIsImVtYWlsIjoidGFjYWNob2pvc2VAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkVDY2dDI5RHE1NHg0LzRXWWtFTjlWdWE4bWo3ZG8yc0JubnR4YzlzeC9CWFVOT0NjdVlENGkifSwiaWF0IjoxNjI0MjIzMTExLCJleHAiOjE2MjQzMDk1MTF9.OC4-kzO_AntGUXH2-9jdGE3_QSiQ94G07sVvjURazYE
+@tokenTemp = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiam9zZSIsInBhc3N3b3JkIjoiJDJiJDEwJG1zNVhQTXpuVEtsam8wbzVCazJ3ek84dzJqaVg5N0JRSGhSMVVlem9Dd04vNkFBbWFpZHRlIiwiZW1haWwiOiJ0YWNhY2hvam9zZUBnbWFpbC5jb20iLCJyb2xlIjowfSwiaWF0IjoxNjI0NjQxMDg4LCJleHAiOjE2MjQ3Mjc0ODh9.iYFf1NzO7xULeZnJ4m8OLnWzAwobKval-bApQ7sRK7M
 ### POST crear usuario 
 POST {{local}}/register
 Content-Type: application/json
@@ -89,6 +89,13 @@ Authorization: jwt {{tokenTemp}}
 
 ### GENDERS ////////////////////////////////////////////////////////////////////
 
+POST {{api}}/genders HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
+nombre=terror&titulo=NDEAA&fechaDeCreacion=2010-12-31&calificacion=4
+
+
 ### Get all genders 
 GET {{api}}/genders HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
@@ -113,3 +120,10 @@ nombre=DDDDDD
 DELETE {{api}}/genders/1 HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Authorization: jwt {{tokenTemp}}
+
+###
+
+GET {{api}}/genders/terror HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: jwt {{tokenTemp}}
+
