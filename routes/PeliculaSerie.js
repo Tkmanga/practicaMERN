@@ -44,6 +44,7 @@ const PeliculaSerieController = require("../controllers/PeliculaSerie");
 /** @swagger 
  * /api/movies/:
  *  get: 
+ *    summary: Traer todas las peliculas/series 
  *    description: Traer todos las peliculas y series 
  *    tags: [Peliculas-Series]  
  *    responses: 
@@ -62,20 +63,14 @@ const PeliculaSerieController = require("../controllers/PeliculaSerie");
 */
 router.get("/", auth, PeliculaSerieController.all);
 
-//CREATE whitout character ?
+
 /**
  * @swagger 
  * /api/movies/:
  *  post: 
+ *    summary: Crear la pelicula Serie 
  *    description: Crear una pelicula/serie  
  *    tags: [Peliculas-Series]  
- *    parameters: 
- *      - in: path
- *        name: id 
- *        schema: 
- *          type: string
- *        required: true 
- *        description: La pelicula serie fue creada.
  *    requestBody: 
  *      required: true
  *      content: 
@@ -84,7 +79,13 @@ router.get("/", auth, PeliculaSerieController.all);
  *              $ref: '#/components/schemas/PeliculaSerie'
  *    responses:  
  *      '200':
- *        description: 'La pelicula/serie se creo '
+ *        description: 'La pelicula serie se creo'
+ *        content:
+ *          application/json:
+ *              schema:
+ *                  type: array
+ *                  items:
+ *                      $ref: '#/components/schemas/PeliculaSerie' 
  *      '404':
  *        description: 'La pelicula serie no se pudo crear'
  *      '401':
@@ -97,11 +98,25 @@ router.post("/", auth, PeliculaSerieController.create);
  * @swagger 
  * /api/movies/{id}:
  *  get: 
+ *    tags: [Peliculas-Series]    
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: id Pelicula-Serie
+ *    summary: Traer la Pelicula-Serie #id
  *    description: Traer una pelica o serie segun su id
- *    tags: [Peliculas-Series]
  *    responses: 
  *      '200':
- *        description: 'Datos de la pelicula serie...'
+ *        description: 'La pelicula serie solicitada es...'
+ *        content:
+ *          application/json:
+ *              schema:
+ *                  type: array
+ *                  items:
+ *                      $ref: '#/components/schemas/PeliculaSerie'
  *      '404':
  *        description: 'La pelicula serie no se encontro'
  *      '401':
@@ -114,15 +129,31 @@ router.get("/:id", auth, PeliculaSerieController.read);
  * @swagger 
  * /api/movies/{id}:
  *  patch: 
+ *    summary: Actualizar la Pelicula/Serie #id 
  *    description: Actualizar una pelicula/serie segun su id  
  *    tags: [Peliculas-Series]  
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: Pelicula/Serie #id 
  *    requestBody: 
- *      require: true
+ *      required: true 
  *      content: 
- *          application/json: 
+ *        application/json:
+ *          schema: 
+ *            $ref: '#/components/schemas/PeliculaSerie'  
  *    responses: 
  *      '200':
- *        description: 'La pelicula/serie fue actualizada '
+ *        description: 'Para actualizar la id'
+ *        content:
+ *          application/json:
+ *              schema:
+ *                  type: array
+ *                  items:
+ *                      $ref: '#/components/schemas/PeliculaSerie'
  *      '404':
  *        description: 'La pelicula serie no se encontro'
  *      '401':
@@ -135,7 +166,8 @@ router.patch("/:id", auth,PeliculaSerieController.update);
  * @swagger 
  * /api/movies/{id}:
  *  delete: 
- *    description: Eliminar la pelicula/serie que indica el id  
+ *    summary: Eliminar la Pelicula/Serie #id  
+ *    description: Eliminar la Pelicula/Serie segun el #id 
  *    tags: [Peliculas-Series]  
  *    parameters: 
  *      - in: path

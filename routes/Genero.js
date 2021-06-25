@@ -100,7 +100,7 @@ router.post("/", auth, GeneroController.create);
  *        required: true
  *        description: The book id
  *    summary: Traer el genero #id
- *    description: solo para probar el controlador 
+ *    description: Traer el genero #id 
  *    responses: 
  *      '200':
  *        description: 'El genero solicitado es...'
@@ -134,7 +134,7 @@ router.get("/:id", auth,GeneroController.findById);
  *        schema:
  *          type: string
  *        required: true
- *        description: The book id
+ *        description: Genero #id 
  *    requestBody: 
  *      required: true 
  *      content: 

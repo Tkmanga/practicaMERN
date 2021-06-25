@@ -50,68 +50,152 @@ const auth = require("../middlewares/auth");
  *      name: Personaje 
  *      description: El API de Personaje 
 */
-/**
- * @swagger 
- * /api/characters/:
- *  post: 
- *    tags: [Personaje]    
- *    description: solo para probar el controlador 
- *    responses: 
- *      '200':
- *        description: ''
-*/
-router.post("/", auth, PersonajeController.create);
-
-//READ
-/**
- * @swagger 
- * /api/characters/:id:
- *  get: 
- *    tags: [Personaje]    
- *    description: solo para probar el controlador 
- *    responses: 
- *      '200':
- *        description: 'solo probando...'
-*/
-router.get("/:id", auth,PersonajeController.read);
-
-//UPDATE
-/**
- * @swagger 
- * /api/characters/:id:
- *  patch: 
- *    tags: [Personaje]    
- *    description: solo para probar el controlador 
- *    responses: 
- *      '200':
- *        description: 'solo probando...'
-*/
-router.patch("/:id", auth, PersonajeController.update);
-
-//DELETE
-/**
- * @swagger 
- * /api/characters/:id:
- *  delete: 
- *    tags: [Personaje]    
- *    description: solo para probar el controlador 
- *    responses: 
- *      '200':
- *        description: 'solo probando...'
-*/
-router.delete("/:id", auth, PersonajeController.delete);
 
 //get all 
 /**
  * @swagger 
  * /api/characters/:
  *  get: 
- *    tags: [Personaje]    
- *    description: solo para probar el controlador 
+ *    tags: [Personaje]  
+ *    summary: Traer todos los Personajes 
+ *    description: Traer todos los Personajes 
  *    responses: 
  *      '200':
- *        description: 'solo probando...'
+ *        description: 'Todos los Generos en la api son...'
+ *        content:
+ *          application/json:
+ *              schema:
+ *                  type: array
+ *                  items:
+ *                      $ref: '#/components/schemas/Personaje'
+ *      '401':
+ *        description: 'Acceso no autorizado'
+ *      '404':
+ *        description: 'No se encontro ningun Personaje' 
 */
 router.get("/", auth, PersonajeController.all);
+/**
+ * @swagger 
+ * /api/characters/:
+ *  post: 
+ *    tags: [Personaje]    
+ *    summary: Crear el Personaje #id
+ *    description: Crear el Personaje #id
+ *    requestBody: 
+ *      required: true 
+ *      content: 
+ *        application/json: 
+ *          schema: 
+ *            $ref: '#/components/schemas/Personaje' 
+ *    responses: 
+ *      '200':
+ *        description: 'El Personaje se creo'
+ *        content:
+ *          application/json:
+ *              schema:
+ *                  type: array
+ *                  items:
+ *                      $ref: '#/components/schemas/Personaje' 
+ *      '401':
+ *        description: 'Acceso no autorizado'
+ *      '404':
+ *        description: 'Error no se pudo crear'
+*/
+router.post("/", auth, PersonajeController.create);
+
+//READ
+/**
+ * @swagger 
+ * /api/characters/{id}:
+ *  get: 
+ *    tags: [Personaje]    
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: Personaje #id
+ *    summary: Traer el Personaje #id
+ *    description: Traer el Personaje #id 
+ *    responses: 
+ *      '200':
+ *        description: 'El Personaje solicitado es...'
+ *        content:
+ *          application/json:
+ *              schema:
+ *                  type: array
+ *                  items:
+ *                      $ref: '#/components/schemas/Personaje'
+ *      '401':
+ *        description: 'Acceso no autorizado'
+ *      '404':
+ *        description: 'No se encontro el genero'
+*/
+router.get("/:id", auth,PersonajeController.read);
+
+//UPDATE
+/**
+ * @swagger 
+ * /api/characters/{id}:
+ *  patch: 
+ *    summary: Actualizar el Personaje #id
+ *    description: Actualizar el Personaje en la bd 
+ *    tags: [Personaje]        
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: Personaje #id 
+ *    requestBody: 
+ *      required: true 
+ *      content: 
+ *        application/json: 
+ *          schema: 
+ *            $ref: '#/components/schemas/Personaje'  
+ *    responses: 
+ *      '200':
+ *        description: 'Para actualizar la id'
+ *        content:
+ *          application/json:
+ *              schema:
+ *                  type: array
+ *                  items:
+ *                      $ref: '#/components/schemas/Personaje'
+ *      '401':
+ *        description: 'Acceso no autorizado'
+ *      '404':
+ *        description: 'No se encontro el genero'
+*/
+router.patch("/:id", auth, PersonajeController.update);
+
+//DELETE
+/**
+ * @swagger 
+ * /api/characters/{id}:
+ *  delete: 
+ *    summary: Eliminar el Personaje #id 
+ *    description: Eliminar el Personaje segun el id 
+ *    tags: [Personaje]    
+ *    parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: Si el ID existe se elimina de la bd 
+ *    responses: 
+ *      '200':
+ *        description: 'El Personaje se elimino'
+ *      '401':
+ *        description: 'Acceso no autorizado'
+ *      '404':
+ *        description: 'Error'
+*/
+router.delete("/:id", auth, PersonajeController.delete);
+
+
 
 module.exports = router;
