@@ -43,7 +43,7 @@ const msg = {
   to: 'tacachojose@gmail.com',
   from: 'tacachojose@gmail.com',
   subject: 'testing node email service',
-  text: 'this is awasome eamil sent from node app'
+  text: 'this is awasome email sent from node app'
 }
 /*
 sgMail.send(msg,(err,info) => {

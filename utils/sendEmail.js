@@ -1,6 +1,6 @@
 require('dotenv').config() 
 const sgMail = require('@sendgrid/mail')
-
+sgMail.setApiKey(process.env.SENDGRID_API_KEY); 
 const sendEmail = (
     to,
     from,
@@ -15,9 +15,9 @@ const sendEmail = (
     }
     sgMail.send(msg,(err,result)=>{
         if(err){
-            console.log('email not send')
+            console.log('email not send error occured')
         }else{
-            console.log('email snet succes')
+            console.log('email sent success')
         }
     })
 }
