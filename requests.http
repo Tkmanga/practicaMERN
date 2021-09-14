@@ -1,13 +1,13 @@
 @local = http://localhost:3000/auth/
 @api = http://localhost:3000/api
 
-@tokenTemp = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InJvbGUiOjAsImlkIjo2LCJuYW1lIjoiam9zZSIsImVtYWlsIjoidGFjYWNob2pvc2VAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkNXpaWi5HQ29tVUpUWVFEQS9vTzVuZTh6cnJtVERlZXRWTFdoN2lVb1ZsSGdGcjhOb09lVksifSwiaWF0IjoxNjMxNTQ5NDgwLCJleHAiOjE2MzE2MzU4ODB9.W6dxS-XiptSsInYx4u946Ymu4JbwnR4AxOQc_5RVfnY
+@tokenTemp = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InJvbGUiOjAsImlkIjoxMSwibmFtZSI6Impvc2VlZSIsImVtYWlsIjoidGFjYWNob2pvc2VAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkMzFNazFlNWhhOGg5bUV4MDJTMzV2dW1vZ291ZUJPNW5LeUlnc0ZqT3k4bXF4eWo5aVNjWnkifSwiaWF0IjoxNjMxNTcwNzg1LCJleHAiOjE2MzE2NTcxODV9.z8DTffB805o_KkOob9o4d3ufNq58ZKQIAH_wApLZDdU
 ### POST crear usuario 
 POST {{local}}/register
 Content-Type: application/json
 
 {
-  "name": "jose",
+  "name": "joseee",
   "password": "123456",
   "email":"tacachojose@gmail.com"
 }
@@ -64,7 +64,7 @@ Authorization: jwt {{tokenTemp}}
 
 titulo=NDEAA&fechaDeCreacion=2010-12-31&calificacion=4&nombre=jorge&edad=20&peso=10&historia=eraCurioso
 
-###
+### GET ALL MOVIES 
 GET {{api}}/movies HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Authorization: jwt {{tokenTemp}}
