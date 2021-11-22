@@ -4,6 +4,13 @@ const auth = require("../middlewares/auth");
 const PeliculaSerieController = require("../controllers/peliculaseries.controller"); 
 // ALL
 
+router.get("/", auth, PeliculaSerieController.all);
+router.post("/", auth, PeliculaSerieController.create);
+router.get("/:id", auth, PeliculaSerieController.read);
+router.patch("/:id", auth,PeliculaSerieController.update);
+router.delete("/:id", auth, PeliculaSerieController.delete);
+
+module.exports = router;
 /**
  * @swagger 
  * components:
@@ -33,14 +40,12 @@ const PeliculaSerieController = require("../controllers/peliculaseries.controlle
  *         fechaDeCreacion: 01/01/1994
  *         calificacion: 4
  */ 
-
 /** 
  * @swagger
  *  tags:    
  *      name: Peliculas-Series 
  *      description: El API de Peliculas/Series 
 */
-
 /** @swagger 
  * /api/movies/:
  *  get: 
@@ -61,9 +66,6 @@ const PeliculaSerieController = require("../controllers/peliculaseries.controlle
  *      '401':
  *        description: 'Acceso no autorizado'
 */
-router.get("/", auth, PeliculaSerieController.all);
-
-
 /**
  * @swagger 
  * /api/movies/:
@@ -91,8 +93,6 @@ router.get("/", auth, PeliculaSerieController.all);
  *      '401':
  *        description: 'Acceso no autorizado'
 */
-router.post("/", auth, PeliculaSerieController.create);
-
 //READ
 /**
  * @swagger 
@@ -122,8 +122,6 @@ router.post("/", auth, PeliculaSerieController.create);
  *      '401':
  *        description: 'Acceso no autorizado'
 */
-router.get("/:id", auth, PeliculaSerieController.read);
-
 //UPDATE
 /**
  * @swagger 
@@ -159,8 +157,6 @@ router.get("/:id", auth, PeliculaSerieController.read);
  *      '401':
  *        description: 'Acceso no autorizado'
 */
-router.patch("/:id", auth,PeliculaSerieController.update);
-
 //DELETE
 /**
  * @swagger 
@@ -184,6 +180,3 @@ router.patch("/:id", auth,PeliculaSerieController.update);
  *      '401':
  *        description: 'Acceso no autorizado'
 */
-router.delete("/:id", auth, PeliculaSerieController.delete);
-
-module.exports = router;

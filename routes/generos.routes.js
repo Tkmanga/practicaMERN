@@ -3,9 +3,19 @@ var GeneroController = require("../controllers/generos.controller");
 const router = express.Router();
 const auth = require("../middlewares/auth");
 
-//test de controlador tabla
+router.get("/", auth, GeneroController.all);
+router.post("/", auth, GeneroController.create);
+router.get("/:id", auth,GeneroController.findById);
+router.get("/:nombre", auth,GeneroController.findByName);
+router.patch("/:id", auth, GeneroController.update);
+router.delete("/:id", auth, GeneroController.delete);
 
-router.get('/test-de-controlador',GeneroController.test); 
+
+module.exports = router;
+
+//test de controlador tabla
+//router.get('/test-de-controlador',GeneroController.test); 
+
 /** 
  * @swagger
  * components:
@@ -31,7 +41,6 @@ router.get('/test-de-controlador',GeneroController.test);
  *      name: Genero 
  *      description: El API de Genero 
 */
-
 // ALL
 /**
  * @swagger 
@@ -54,8 +63,6 @@ router.get('/test-de-controlador',GeneroController.test);
  *      '404':
  *        description: 'No se encontro ningun genero'    
 */
-router.get("/", auth, GeneroController.all);
-
 /**
  * @swagger 
  * /api/genders/:
@@ -83,9 +90,6 @@ router.get("/", auth, GeneroController.all);
  *      '404':
  *        description: 'Error no se pudo crear'
 */
-router.post("/", auth, GeneroController.create);
-
-
 //READ
 /**
  * @swagger 
@@ -115,11 +119,6 @@ router.post("/", auth, GeneroController.create);
  *      '404':
  *        description: 'No se encontro el genero'
 */
-router.get("/:id", auth,GeneroController.findById);
-
-
-router.get("/:nombre", auth,GeneroController.findByName);
-
 //UPDATE
 /**
  * @swagger 
@@ -155,8 +154,6 @@ router.get("/:nombre", auth,GeneroController.findByName);
  *      '404':
  *        description: 'No se encontro el genero'
 */
-router.patch("/:id", auth, GeneroController.update);
-
 //DELETE
 /**
  * @swagger 
@@ -180,7 +177,3 @@ router.patch("/:id", auth, GeneroController.update);
  *      '404':
  *        description: 'Error'
 */
-router.delete("/:id", auth, GeneroController.delete);
-
-
-module.exports = router;

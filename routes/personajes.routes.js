@@ -1,9 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const Personaje = require("../database/models/Personaje");
 const PersonajeController = require("../controllers/personajes.controller");
 const auth = require("../middlewares/auth");
 
+router.get("/", auth, PersonajeController.all);
+router.post("/", auth, PersonajeController.create);
+router.get("/:id", auth,PersonajeController.read);
+router.patch("/:id", auth, PersonajeController.update);
+router.delete("/:id", auth, PersonajeController.delete);
+
+module.exports = router;
 //CREATE whitout character ?
 /** 
  * @swagger
@@ -50,7 +56,6 @@ const auth = require("../middlewares/auth");
  *      name: Personaje 
  *      description: El API de Personaje 
 */
-
 //get all 
 /**
  * @swagger 
@@ -73,7 +78,6 @@ const auth = require("../middlewares/auth");
  *      '404':
  *        description: 'No se encontro ningun Personaje' 
 */
-router.get("/", auth, PersonajeController.all);
 /**
  * @swagger 
  * /api/characters/:
@@ -101,8 +105,6 @@ router.get("/", auth, PersonajeController.all);
  *      '404':
  *        description: 'Error no se pudo crear'
 */
-router.post("/", auth, PersonajeController.create);
-
 //READ
 /**
  * @swagger 
@@ -132,8 +134,6 @@ router.post("/", auth, PersonajeController.create);
  *      '404':
  *        description: 'No se encontro el genero'
 */
-router.get("/:id", auth,PersonajeController.read);
-
 //UPDATE
 /**
  * @swagger 
@@ -169,8 +169,6 @@ router.get("/:id", auth,PersonajeController.read);
  *      '404':
  *        description: 'No se encontro el genero'
 */
-router.patch("/:id", auth, PersonajeController.update);
-
 //DELETE
 /**
  * @swagger 
@@ -194,8 +192,3 @@ router.patch("/:id", auth, PersonajeController.update);
  *      '404':
  *        description: 'Error'
 */
-router.delete("/:id", auth, PersonajeController.delete);
-
-
-
-module.exports = router;
