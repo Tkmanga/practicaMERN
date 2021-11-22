@@ -1,5 +1,5 @@
 const express = require("express");
-var GeneroController = require("../controllers/Genero");
+var GeneroController = require("../controllers/generos.controller");
 const router = express.Router();
 const auth = require("../middlewares/auth");
 

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Personaje = require("../database/models/Personaje");
-const PersonajeController = require("../controllers/Personajes");
+const PersonajeController = require("../controllers/personajes.controller");
 const auth = require("../middlewares/auth");
 
 //CREATE whitout character ?

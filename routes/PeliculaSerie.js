@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../middlewares/auth");
-const PeliculaSerieController = require("../controllers/PeliculaSerie"); 
+const PeliculaSerieController = require("../controllers/peliculaseries.controller"); 
 // ALL
 
 /**
